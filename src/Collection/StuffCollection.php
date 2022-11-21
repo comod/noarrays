@@ -3,10 +3,8 @@ declare(strict_types=1);
 
 namespace NoArrays\Collection;
 
-use Iterator;
 use IteratorIterator;
 
-/** @extends IteratorIterator<mixed, mixed, Iterator> */
 class StuffCollection extends IteratorIterator
 {
     public function __construct(Stuff ...$items)
