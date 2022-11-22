@@ -7,11 +7,11 @@ use IteratorIterator;
 
 class StuffCollection extends IteratorIterator
 {
-    public function __construct(Stuff ...$items)
+    public function __construct(Stuff ...$collection)
     {
         parent::__construct(
-            (static function () use ($items): \Generator {
-                yield from $items;
+            (static function () use ($collection): \Generator {
+                yield from $collection;
             })()
         );
     }

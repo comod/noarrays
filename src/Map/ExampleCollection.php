@@ -5,9 +5,6 @@ namespace NoArrays\Map;
 
 use ArrayObject;
 
-/**
- * @extends ArrayObject<string, string>
- */
 class ExampleCollection extends ArrayObject
 {
 }

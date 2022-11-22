@@ -1,20 +1,25 @@
 <?php declare(strict_types = 1);
 namespace NoArrays\CollectionWithIterator;
 
-class AuthorCollection implements \Countable, \IteratorAggregate {
-    private $authors = [];
+use Iterator;
 
-    public function add(Author $author): void {
-        $this->authors[] = $author;
-    }
-
-    public function getAuthors(): array {
-        return $this->authors;
-    }
-
-    public function count(): int {
-        return \count($this->authors);
-    }
+class AuthorCollection
+    extends \ArrayObject
+//    implements \Countable, \IteratorAggregate
+{
+//    private array $items = [];
+//
+//    public function append($author): void {
+//        $this->items[] = $author;
+//    }
+//
+//    public function getItems(): array {
+//        return $this->items;
+//    }
+//
+//    public function count(): int {
+//        return \count($this->items);
+//    }
 
     public function getIterator(): AuthorCollectionIterator {
         return new AuthorCollectionIterator($this);

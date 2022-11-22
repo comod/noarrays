@@ -1,34 +1,21 @@
 <?php declare(strict_types = 1);
 namespace NoArrays\CollectionWithIterator;
 
-class AuthorCollectionIterator implements \Iterator {
-    /** @var Author[] */
-    private $authors;
+use IteratorIterator;
 
-    /** @var int */
-    private $position = 0;
-
-    public function __construct(AuthorCollection $authors) {
-        $this->authors = $authors->getAuthors();
+class AuthorCollectionIterator extends IteratorIterator
+{
+    public function __construct(AuthorCollection $collection)
+    {
+        parent::__construct(
+            (static function () use ($collection): \Generator {
+                yield from $collection->getArrayCopy();
+            })()
+        );
     }
 
-    public function rewind(): void {
-        $this->position = 0;
-    }
-
-    public function valid(): bool {
-        return $this->position < \count($this->authors);
-    }
-
-    public function key(): int {
-        return $this->position;
-    }
-
-    public function current(): Author {
-        return $this->authors[$this->position];
-    }
-
-    public function next(): void {
-        $this->position++;
+    public function current(): Author
+    {
+        return parent::current();
     }
 }
