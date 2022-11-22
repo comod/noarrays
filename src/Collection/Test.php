@@ -9,6 +9,7 @@ $stuffCollection = new StuffCollection(
     new Stuff('foo'),
     new Stuff('bar'),
 );
+//$stuffCollection
 
 foreach ($stuffCollection as $stuff) {
     echo $stuff->getName();
